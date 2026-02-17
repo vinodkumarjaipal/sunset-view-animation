@@ -1,0 +1,381 @@
+
+ * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Cormorant Garamond', sans-serif;
+            background: #1a1a2e;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            min-height: 100dvh;
+            overflow-x: hidden;
+            color: #fff;
+            padding: 12px;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(12px, 3vh, 30px);
+        }
+
+        h1 {
+            margin-bottom: 4px;
+            color: #ffcc00;
+            text-shadow: 0 2px 10px rgba(255, 204, 0, 0.3);
+            font-size: clamp(1.5rem, 6vw, 2.5rem);
+            line-height: 1.2;
+            padding: 0 10px;
+        }
+
+        .subtitle {
+            color: #ff9966;
+            font-size: clamp(0.85rem, 4vw, 1.2rem);
+            padding: 0 15px;
+            margin-bottom: 5px;
+            font-weight: 300;
+        }
+
+        .sky {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            border-radius: clamp(12px, 4vw, 20px);
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            margin-bottom: 0;
+            touch-action: pan-y;
+            border: 1px solid rgba(255, 153, 102, 0.2);
+        }
+
+        /* Sunset gradients - 12 beautiful colors */
+        .sunset-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+
+        .gradient-1 { background: linear-gradient(to bottom, #ff9966 0%, #ff5e62 30%, #6a11cb 80%, #1a1a2e 100%); opacity: 1; }
+        .gradient-2 { background: linear-gradient(to bottom, #ffcc00 0%, #ff9966 25%, #ff5e62 50%, #8a2be2 80%, #1a1a2e 100%); }
+        .gradient-3 { background: linear-gradient(to bottom, #ff9966 0%, #ff5e62 30%, #8a2be2 60%, #4b0082 80%, #1a1a2e 100%); }
+        .gradient-4 { background: linear-gradient(to bottom, #ff9966 0%, #ff5e62 40%, #6a11cb 70%, #2575fc 90%, #1a1a2e 100%); }
+        .gradient-5 { background: linear-gradient(to bottom, #ff3300 0%, #ff5500 15%, #ff7e00 35%, #cc5500 60%, #8b3a3a 80%, #1a1a2e 100%); }
+        .gradient-6 { background: linear-gradient(to bottom, #ffd700 0%, #ffb347 15%, #ff8c00 35%, #c67100 55%, #9b4d00 75%, #1a1a2e 100%); }
+        .gradient-7 { background: linear-gradient(to bottom, #7fffd4 0%, #40e0d0 15%, #00ced1 35%, #008b8b 55%, #006a6a 75%, #1a1a2e 100%); }
+        .gradient-8 { background: linear-gradient(to bottom, #dda0dd 0%, #ba55d3 15%, #9932cc 35%, #8b008b 55%, #4b0082 75%, #1a1a2e 100%); }
+        .gradient-9 { background: linear-gradient(to bottom, #ff6b6b 0%, #c41e3a 15%, #b22222 35%, #8b0000 55%, #5c0000 75%, #1a1a2e 100%); }
+        .gradient-10 { background: linear-gradient(to bottom, #ff9966 0%, #cc6666 15%, #996699 35%, #663366 60%, #330033 80%, #1a1a2e 100%); }
+        .gradient-11 { background: linear-gradient(to bottom, #ffbf00 0%, #ff9f00 15%, #ff7f00 35%, #d46b00 55%, #a0522d 75%, #1a1a2e 100%); }
+        .gradient-12 { background: linear-gradient(to bottom, #ffb6c1 0%, #ff69b4 15%, #db7093 35%, #b0306a 55%, #8b1c62 75%, #1a1a2e 100%); }
+
+        /* SUN */
+        .sun-container {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            height: 400px;
+            animation: sunset 30s infinite linear;
+            animation-play-state: running;
+            z-index: 20;
+        }
+
+        .sun {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, #ffcc00 0%, #ff9900 70%, #ff6600 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 60px rgba(255, 153, 0, 0.8),
+                        0 0 100px rgba(255, 102, 0, 0.6),
+                        0 0 150px rgba(255, 68, 0, 0.4);
+            z-index: 10;
+        }
+
+        .sun-rays {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 204, 0, 0.3) 0%, transparent 70%);
+            animation: pulse 4s infinite alternate;
+        }
+
+        .sun-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 153, 0, 0.2) 0%, transparent 70%);
+            animation: glow 6s infinite alternate;
+        }
+
+        /* MOON */
+        .moon-container {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%) rotate(180deg);
+            width: 400px;
+            height: 400px;
+            animation: moonrise 30s infinite linear;
+            animation-play-state: running;
+            animation-delay: -15s;
+            opacity: 0.3;
+            z-index: 15;
+        }
+
+        .moon {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #f0f0f0 0%, #c0c0c0 70%, #a0a0a0 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(240, 240, 240, 0.5),
+                        0 0 60px rgba(200, 200, 200, 0.3);
+            z-index: 5;
+        }
+
+        /* Water reflection */
+        .water {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(to top, rgba(26, 26, 46, 0.9) 0%, rgba(74, 0, 130, 0.6) 30%, transparent 100%);
+            z-index: 30;
+        }
+
+        .water-reflection {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(to top, rgba(255, 153, 102, 0.3) 0%, rgba(255, 94, 98, 0.2) 20%, transparent 60%);
+            z-index: 25;
+            animation: water-shimmer 8s infinite alternate;
+        }
+
+        /* Stars */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 0 5px white;
+        }
+
+        /* Audio Controls - subtle and elegant */
+        .audio-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .audio-btn {
+            background: rgba(10, 10, 10, 0.5);
+            border: 1px solid rgba(255, 153, 102, 0.5);
+            border-radius: 50px;
+            padding: 12px 20px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(5px);
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .audio-btn:hover {
+            border-color: #ff9966;
+            background: rgba(255, 153, 102, 0.2);
+            box-shadow: 0 0 20px rgba(255, 153, 102, 0.4);
+        }
+
+        .audio-btn:active {
+            transform: scale(0.96);
+        }
+
+        .audio-warning {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border-left: 4px solid #ff9966;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #ffcc99;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+            display: none;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .audio-warning.visible {
+            display: block;
+        }
+
+        /* Sunset controls */
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: clamp(8px, 2vw, 15px);
+            margin-top: 10px;
+            padding: 0 5px;
+        }
+
+        button {
+            background: linear-gradient(to right, #ff9966, #ff5e62);
+            border: none;
+            color: white;
+            padding: clamp(10px, 3vw, 14px) clamp(16px, 5vw, 24px);
+            border-radius: 50px;
+            font-size: clamp(0.85rem, 3.5vw, 1rem);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(255, 94, 98, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            flex: 0 1 auto;
+            min-width: 140px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            touch-action: manipulation;
+        }
+
+        button:active {
+            transform: scale(0.96);
+        }
+
+        .speed-controls {
+            display: flex;
+            gap: clamp(6px, 2vw, 10px);
+            background: rgba(255, 255, 255, 0.08);
+            padding: clamp(6px, 2vw, 10px);
+            border-radius: 50px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .speed-btn {
+            padding: clamp(8px, 2.5vw, 10px) clamp(14px, 4vw, 20px);
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            min-width: auto;
+            flex: 1 1 auto;
+        }
+
+        .speed-btn.active {
+            background: linear-gradient(to right, #8a2be2, #6a11cb);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .gradient-counter {
+            margin-top: 15px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: clamp(0.8rem, 3vw, 0.95rem);
+            background: rgba(0, 0, 0, 0.4);
+            padding: clamp(6px, 2vw, 10px) clamp(12px, 4vw, 20px);
+            border-radius: 50px;
+            display: inline-block;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .sun-container, .moon-container {
+                width: 300px;
+                height: 300px;
+            }
+            .sun { width: 80px; height: 80px; }
+            .sun-rays { width: 140px; height: 140px; }
+            .sun-glow { width: 200px; height: 200px; }
+            .moon { width: 60px; height: 60px; }
+            .water, .water-reflection { height: 100px; }
+        }
+
+        @media (max-width: 480px) {
+            .sun-container, .moon-container {
+                width: 250px;
+                height: 250px;
+            }
+            .sun { width: 70px; height: 70px; }
+            .moon { width: 50px; height: 50px; }
+            .controls { flex-direction: column; width: 100%; }
+            button { width: 100%; max-width: 280px; }
+            .audio-btn { padding: 10px 16px; font-size: 0.9rem; }
+        }
+
+        /* Animations */
+        @keyframes sunset { 0% { transform: translateX(-50%) rotate(0deg); } 100% { transform: translateX(-50%) rotate(180deg); } }
+        @keyframes moonrise { 
+            0% { transform: translateX(-50%) rotate(180deg); opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { transform: translateX(-50%) rotate(360deg); opacity: 0.3; }
+        }
+        @keyframes pulse { 0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; } 100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; } }
+        @keyframes glow { 0% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; } 100% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.5; } }
+        @keyframes water-shimmer { 0% { opacity: 0.6; } 100% { opacity: 1; } }
+        @keyframes twinkle { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+        
+        .paused { animation-play-state: paused !important; }
+    

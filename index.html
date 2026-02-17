@@ -1,0 +1,94 @@
+<!-- Created by Fatima Abdullah -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Sunset × Calming Music</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- SUNSET CONTENT  -->
+    <div class="container">
+        <!-- Audio Controls () -->
+        <div class="audio-controls">
+            <button id="audioToggleBtn" class="audio-btn">
+                <span id="audioIcon">🎵</span>
+                <span id="audioText">Play Music</span>
+            </button>
+        </div>
+        
+        <div class="audio-warning" id="audioWarning">
+            🎵 Click "Play Music" for ambient soundtrack
+        </div>
+
+        <h1>Sunset Colors</h1>
+        <p class="subtitle">12 stunning gradients • Aetheric Wandering</p>
+        
+        <div class="sky" id="sky">
+            <!-- Sunset gradients - 12 beautiful colors -->
+            <div class="sunset-gradient gradient-1"></div>
+            <div class="sunset-gradient gradient-2"></div>
+            <div class="sunset-gradient gradient-3"></div>
+            <div class="sunset-gradient gradient-4"></div>
+            <div class="sunset-gradient gradient-5"></div>
+            <div class="sunset-gradient gradient-6"></div>
+            <div class="sunset-gradient gradient-7"></div>
+            <div class="sunset-gradient gradient-8"></div>
+            <div class="sunset-gradient gradient-9"></div>
+            <div class="sunset-gradient gradient-10"></div>
+            <div class="sunset-gradient gradient-11"></div>
+            <div class="sunset-gradient gradient-12"></div>
+            
+            <!-- SUN -->
+            <div class="sun-container">
+                <div class="sun-glow"></div>
+                <div class="sun-rays"></div>
+                <div class="sun"></div>
+            </div>
+            
+            <!-- MOON -->
+            <div class="moon-container">
+                <div class="moon"></div>
+            </div>
+            
+            <!-- Water reflection -->
+            <div class="water"></div>
+            <div class="water-reflection"></div>
+            
+            <!-- Stars -->
+            <div class="stars" id="stars"></div>
+        </div>
+        
+        <div class="controls">
+            <button id="toggle-animation">
+                <span class="playing">⏸️ Pause</span>
+                <span class="paused" style="display:none;">▶️ Play</span>
+            </button>
+            <button id="change-gradient">🌈 Cycle</button>
+            <button id="toggle-stars">✨ Stars</button>
+            <button id="random-gradient">🎲 Random</button>
+        </div>
+        
+        <div class="speed-controls">
+            <button class="speed-btn active" data-speed="1">1x</button>
+            <button class="speed-btn" data-speed="2">2x</button>
+            <button class="speed-btn" data-speed="0.5">0.5x</button>
+        </div>
+        
+        <div class="gradient-counter" id="gradient-counter">
+            Classic Orange (1/12)
+        </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="bgAudio" preload="auto" loop>
+        <source src="https://www.dropbox.com/scl/fi/l90ma3c019w9bbzlfe59y/Aetheric-Wandering-Away-freetouse.com.mp3?rlkey=z9foox2f9at8kogcuzidllb8o&st=xuuvvj51&dl=1" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+<script src="script.js"></script>
+
+   </body>
+</html>
